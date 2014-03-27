@@ -422,6 +422,11 @@ typedef struct
     }
 }
 
+- (void)setFrontViewControllerId:(NSString *)frontViewControllerId {
+    _frontViewControllerId = frontViewControllerId;
+    [self setFrontViewController:[self.storyboard instantiateViewControllerWithIdentifier:frontViewControllerId]];
+}
+
 - (void)setLeftViewController:(UIViewController *)leftViewController
 {
     if (leftViewController != _leftViewController)
@@ -440,6 +445,11 @@ typedef struct
     }
 }
 
+- (void)setLeftViewControllerId:(NSString *)leftViewControllerId {
+    _leftViewControllerId = leftViewControllerId;
+    [self setLeftViewController:[self.storyboard instantiateViewControllerWithIdentifier:leftViewControllerId]];
+}
+
 - (void)setRightViewController:(UIViewController *)rightViewController
 {
     if (rightViewController != _rightViewController)
@@ -456,6 +466,11 @@ typedef struct
             [self addViewController:_rightViewController container:self.rightView];
         }
     }
+}
+
+- (void)setRightViewControllerId:(NSString *)rightViewControllerId {
+    _rightViewControllerId = rightViewControllerId;
+    [self setRightViewController:[self.storyboard instantiateViewControllerWithIdentifier:rightViewControllerId]];
 }
 
 - (void)setMinimumWidth:(CGFloat)minWidth

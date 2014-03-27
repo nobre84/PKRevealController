@@ -69,11 +69,20 @@ FOUNDATION_EXTERN NSString * const PKRevealControllerRecognizesResetTapOnFrontVi
 /// The view controller displayed on top of the left and right ones.
 @property (nonatomic, readwrite) UIViewController *frontViewController;
 
+/// The Storyboard ID of the front controller
+@property (nonatomic, readwrite) NSString *frontViewControllerId;
+
 /// The view controller on the left.
 @property (nonatomic, readwrite) UIViewController *leftViewController;
 
+/// The Storyboard ID of the left controller
+@property (nonatomic, readwrite) NSString *leftViewControllerId;
+
 /// The view controller on the right.
 @property (nonatomic, readwrite) UIViewController *rightViewController;
+
+/// The Storyboard ID of the right controller
+@property (nonatomic, readwrite) NSString *rightViewControllerId;
 
 /// The gesture recognizer that is used to enable pan based reveal. By default this recognizer is added to the front view's container. Inactive and at your disposal if front view panning is disabled.
 @property (nonatomic, readonly) UIPanGestureRecognizer *revealPanGestureRecognizer;
