@@ -422,11 +422,6 @@ typedef struct
     }
 }
 
-- (void)setFrontViewControllerId:(NSString *)frontViewControllerId {
-    _frontViewControllerId = frontViewControllerId;
-    [self setFrontViewController:[self.storyboard instantiateViewControllerWithIdentifier:frontViewControllerId]];
-}
-
 - (void)setLeftViewController:(UIViewController *)leftViewController
 {
     if (leftViewController != _leftViewController)
@@ -445,11 +440,6 @@ typedef struct
     }
 }
 
-- (void)setLeftViewControllerId:(NSString *)leftViewControllerId {
-    _leftViewControllerId = leftViewControllerId;
-    [self setLeftViewController:[self.storyboard instantiateViewControllerWithIdentifier:leftViewControllerId]];
-}
-
 - (void)setRightViewController:(UIViewController *)rightViewController
 {
     if (rightViewController != _rightViewController)
@@ -466,11 +456,6 @@ typedef struct
             [self addViewController:_rightViewController container:self.rightView];
         }
     }
-}
-
-- (void)setRightViewControllerId:(NSString *)rightViewControllerId {
-    _rightViewControllerId = rightViewControllerId;
-    [self setRightViewController:[self.storyboard instantiateViewControllerWithIdentifier:rightViewControllerId]];
 }
 
 - (void)setMinimumWidth:(CGFloat)minWidth
@@ -635,10 +620,26 @@ typedef struct
     
     _state = PKRevealControllerShowsFrontViewController;
     
+    [self loadStoryboardViewControllers];
+    
     [self setupContainerViews];
     [self setupGestureRecognizers];
     
     self.animator = [PKLayerAnimator animatorForLayer:self.frontView.layer];
+}
+
+#pragma mark - Storyboard controllers
+
+- (void)loadStoryboardViewControllers {
+    if (self.frontViewControllerId) {
+        self.frontViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.frontViewControllerId];
+    }
+    if (self.leftViewControllerId) {
+        self.leftViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.leftViewControllerId];
+    }
+    if (self.rightViewControllerId) {
+        self.rightViewController = [self.storyboard instantiateViewControllerWithIdentifier:self.rightViewControllerId];
+    }
 }
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
